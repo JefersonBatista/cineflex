@@ -2,9 +2,6 @@
   height: 43px;
   border-radius: 3px;
 
-  margin-bottom: 25px;
-  margin-right: 10px;
-
   font-family: "Roboto", sans-serif;
   font-style: normal;
   font-weight: normal;
@@ -16,8 +13,14 @@
 
 .large-button {
   width: 225px;
+
+  margin: 25px auto;
 }
 
 .small-button {
   width: 82px;
+
+  margin-top: 25px;
+  margin-bottom: 25px;
+  margin-right: 10px;
 }

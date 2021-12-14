@@ -1,4 +1,27 @@
-.app {
+.app .header {
+  position: fixed;
+  top: 0;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 100%;
+  height: 67px;
+
+  font-family: "Roboto", sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 34px;
+  text-align: center;
+  text-transform: uppercase;
+  background-color: #c3cfd9;
+  color: #e8833a;
+}
+
+.app .container {
   display: flex;
   flex-direction: column;
+
+  margin-top: 67px;
 }
