@@ -9,15 +9,17 @@
   text-align: center;
   color: white;
   background-color: #e8833a;
+
+  cursor: pointer;
 }
 
-.large-button {
+.button.large {
   width: 225px;
 
   margin: 25px auto;
 }
 
-.small-button {
+.button.small {
   width: 82px;
 
   margin-top: 25px;

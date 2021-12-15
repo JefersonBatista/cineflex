@@ -1,0 +1,31 @@
+.seat-selector {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+
+  font-family: "Roboto", sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 11px;
+
+  cursor: default;
+}
+
+.seat-selector.available {
+  border: 1px solid #808f9d;
+  background-color: #c3cfd9;
+}
+
+.seat-selector.unavailable {
+  border: 1px solid #f7c52b;
+  background-color: #fbe192;
+}
+
+.seat-selector.selected {
+  border: 1px solid #45bdb0;
+  background-color: #8dd7cf;
+}

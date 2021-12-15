@@ -1,0 +1,12 @@
+.seat-selection {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+
+  padding: 16px 24px;
+}
+
+.seat-selection .row {
+  display: flex;
+  gap: 7px;
+}
