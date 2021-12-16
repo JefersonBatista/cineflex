@@ -25,6 +25,11 @@ export default function SeatSelection() {
   const [selectedSeats, setSelectedSeats] = useState([]);
 
   function chooseSeat(number, status) {
+    if (status === "unavailable") {
+      alert("Esse assento não está disponível");
+      return;
+    }
+
     if (status === "available") {
       setSelectedSeats([...selectedSeats, number]);
     } else if (status === "selected") {
