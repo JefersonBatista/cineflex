@@ -1,0 +1,36 @@
+/* It would be better to do it with styled components, but
+   by now, I will let it this way */
+
+.poster-area.small {
+  --poster-width: 48px;
+  --poster-height: 72px;
+
+  border-radius: 2px;
+
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.poster-area.large {
+  --poster-width: calc(50vw - 30px - 2 * 8px - 15px);
+  --poster-height: 193px;
+
+  border-radius: 3px;
+
+  box-shadow: 0px 2px 4px 2px rgba(0, 0, 0, 0.1);
+
+  cursor: pointer;
+}
+
+.poster-area {
+  width: calc(var(--poster-width) + 2 * 8px);
+  height: calc(var(--poster-height) + 2 * 8px);
+
+  padding: 8px;
+
+  background-color: white;
+}
+
+.poster {
+  width: 100%;
+  height: 100%;
+}

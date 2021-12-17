@@ -1,29 +1,43 @@
-import Button from "../components/Button";
+import { useState } from "react";
+
 import Footer from "../components/Footer";
-import SeatSelection from "../components/SeatSelection";
+import MovieSelection from "./MovieSelection";
 
 import "./style.css";
 
 export default function App() {
+  const [page, setPage] = useState("MovieSelection");
+
+  function pageTitle() {
+    switch (page) {
+      case "MovieSelection":
+        return "Selecione o filme";
+      case "SessionSelection":
+        return "Selecione o horário";
+      case "SeatSelection":
+        return "Selecione o(s) assento(s)";
+      default:
+        return null;
+    }
+  }
+
   return (
     <div className="app">
       <header className="header">Cineflex</header>
 
       <div className="container">
-        <SeatSelection />
+        {pageTitle() && <h1 className="page-title">{pageTitle()}</h1>}
 
-        <Button
-          size="large"
-          text="Reservar assento(s)"
-          action={() => alert("Funcionalidade ainda não implementada!")}
-        />
+        <MovieSelection setPage={setPage} />
 
-        <Footer
-          posterURL="https://image.tmdb.org/t/p/w500/7D430eqZj8y3oVkLFfsWXGRcpEG.jpg"
-          movieTitle="2067"
-          weekday="Quinta-feira"
-          time="15:00"
-        />
+        {(page === "session" || page === "seat") && (
+          <Footer
+            posterURL="https://image.tmdb.org/t/p/w500/7D430eqZj8y3oVkLFfsWXGRcpEG.jpg"
+            movieTitle="2067"
+            weekday="Quinta-feira"
+            time="15:00"
+          />
+        )}
       </div>
     </div>
   );

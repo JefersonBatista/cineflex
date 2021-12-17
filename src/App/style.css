@@ -19,11 +19,44 @@
   color: #e8833a;
 }
 
+.app .page-title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 100%;
+  height: 110px;
+
+  font-family: "Roboto", sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 24px;
+  color: #293845;
+}
+
 .app .container {
   display: flex;
   flex-direction: column;
   align-items: center;
 
+  width: 100%;
+
   margin-top: 67px;
   margin-bottom: 117px;
 }
+
+.app .movies {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+
+  padding: 30px;
+  gap: 11px;
+
+  width: 100%;
+}
+
+/* .app .poster-area {
+  margin-left: 30px;
+  margin-top: 11px;
+} */
