@@ -45,7 +45,7 @@
   margin-bottom: 117px;
 }
 
-.app .movies {
+/* .app .movies {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
@@ -54,7 +54,7 @@
   gap: 11px;
 
   width: 100%;
-}
+} */
 
 /* .app .poster-area {
   margin-left: 30px;

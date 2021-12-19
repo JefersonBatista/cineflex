@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 import Poster from "../../components/Poster";
 
@@ -20,10 +21,14 @@ export default function MovieSelection({ setPage }) {
     return <h1>Carregando...</h1>;
   }
 
+  setPage("MovieSelection");
+
   return (
     <section className="movies">
       {movies.map((movie) => (
-        <Poster key={movie.id} size="large" posterURL={movie.posterURL} />
+        <Link key={movie.id} to={`/sessoes/${movie.id}`}>
+          <Poster size="large" posterURL={movie.posterURL} />
+        </Link>
       ))}
     </section>
   );

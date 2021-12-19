@@ -1,18 +1,24 @@
 import { useState } from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import Footer from "../components/Footer";
 import MovieSelection from "./MovieSelection";
+import ShowtimeSelection from "./ShowtimeSelection";
 
 import "./style.css";
 
 export default function App() {
   const [page, setPage] = useState("MovieSelection");
+  const [movieTitle, setMovieTitle] = useState(null);
+  const [posterURL, setPosterURL] = useState(null);
+  const [weekday, setWeekday] = useState(null);
+  const [time, setTime] = useState(null);
 
   function pageTitle() {
     switch (page) {
       case "MovieSelection":
         return "Selecione o filme";
-      case "SessionSelection":
+      case "ShowtimeSelection":
         return "Selecione o horário";
       case "SeatSelection":
         return "Selecione o(s) assento(s)";
@@ -28,14 +34,33 @@ export default function App() {
       <div className="container">
         {pageTitle() && <h1 className="page-title">{pageTitle()}</h1>}
 
-        <MovieSelection setPage={setPage} />
+        <BrowserRouter>
+          <Routes>
+            <Route
+              key={1}
+              path="/"
+              element={<MovieSelection setPage={setPage} />}
+            />
+            <Route
+              key={2}
+              path="/sessoes/:idFilme"
+              element={
+                <ShowtimeSelection
+                  setMovieTitle={setMovieTitle}
+                  setPosterURL={setPosterURL}
+                  setPage={setPage}
+                />
+              }
+            />
+          </Routes>
+        </BrowserRouter>
 
-        {(page === "session" || page === "seat") && (
+        {(page === "ShowtimeSelection" || page === "SeatSelection") && (
           <Footer
-            posterURL="https://image.tmdb.org/t/p/w500/7D430eqZj8y3oVkLFfsWXGRcpEG.jpg"
-            movieTitle="2067"
-            weekday="Quinta-feira"
-            time="15:00"
+            posterURL={posterURL}
+            movieTitle={movieTitle}
+            weekday={weekday}
+            time={time}
           />
         )}
       </div>

@@ -1,0 +1,11 @@
+.movies {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+
+  padding: 30px;
+  gap: 11px;
+
+  width: 100%;
+  max-width: 600px;
+}

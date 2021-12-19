@@ -11,7 +11,10 @@
 }
 
 .poster-area.large {
-  --poster-width: calc(50vw - 30px - 2 * 8px - 15px);
+  --poster-width: min(
+    calc(50vw - 30px - 2 * 8px - 15px),
+    calc(300px - 30px - 2 * 8px - 15px)
+  );
   --poster-height: 193px;
 
   border-radius: 3px;

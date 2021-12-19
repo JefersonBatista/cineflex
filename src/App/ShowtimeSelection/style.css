@@ -1,0 +1,16 @@
+.showtimes {
+  padding: 24px;
+}
+
+.showtimes .day {
+  display: flex;
+  flex-direction: column;
+}
+
+.showtimes .text {
+  font-family: "Roboto", sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 20px;
+  color: #293845;
+}
