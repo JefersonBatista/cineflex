@@ -1,8 +1,8 @@
 import { useState } from "react";
 import "./style.css";
 
-export default function SeatSelector({ seatNumber, seatStatus, chooseSeat }) {
-  const [status, setStatus] = useState(seatStatus);
+export default function Seat({ number, initialStatus, chooseSeat }) {
+  const [status, setStatus] = useState(initialStatus);
 
   function handleChooseSeat() {
     chooseSeat(status);
@@ -15,8 +15,8 @@ export default function SeatSelector({ seatNumber, seatStatus, chooseSeat }) {
   }
 
   return (
-    <div className={`seat-selector ${status}`} onClick={handleChooseSeat}>
-      {seatNumber.toLocaleString("pt-BR", { minimumIntegerDigits: 2 })}
+    <div className={`seat ${status}`} onClick={handleChooseSeat}>
+      {number.toLocaleString("pt-BR", { minimumIntegerDigits: 2 })}
     </div>
   );
 }

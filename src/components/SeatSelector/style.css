@@ -1,12 +1,13 @@
-.seat-selection {
+.seat-selector {
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 18px;
 
   padding: 16px 24px;
 }
 
-.seat-selection .row {
+.seat-selector .row {
   display: flex;
   gap: 7px;
 }

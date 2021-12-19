@@ -15,16 +15,16 @@ export default function MovieSelection({ setPage }) {
       .then((response) => {
         setMovies(response.data);
       });
+
+    setPage("MovieSelection");
   }, []);
 
   if (movies === null) {
     return <h1>Carregando...</h1>;
   }
 
-  setPage("MovieSelection");
-
   return (
-    <section className="movies">
+    <section className="movie-selection">
       {movies.map((movie) => (
         <Link key={movie.id} to={`/sessoes/${movie.id}`}>
           <Poster size="large" posterURL={movie.posterURL} />

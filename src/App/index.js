@@ -4,6 +4,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Footer from "../components/Footer";
 import MovieSelection from "./MovieSelection";
 import ShowtimeSelection from "./ShowtimeSelection";
+import SeatSelection from "./SeatSelection";
 
 import "./style.css";
 
@@ -48,6 +49,21 @@ export default function App() {
                 <ShowtimeSelection
                   setMovieTitle={setMovieTitle}
                   setPosterURL={setPosterURL}
+                  setWeekday={setWeekday}
+                  setTime={setTime}
+                  setPage={setPage}
+                />
+              }
+            />
+            <Route
+              key={3}
+              path="/assentos/:idSessao"
+              element={
+                <SeatSelection
+                  setMovieTitle={setMovieTitle}
+                  setPosterURL={setPosterURL}
+                  setWeekday={setWeekday}
+                  setTime={setTime}
                   setPage={setPage}
                 />
               }

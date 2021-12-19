@@ -1,13 +1,13 @@
-.showtimes {
+.showtime-selection {
   padding: 24px;
 }
 
-.showtimes .day {
+.showtime-selection .day {
   display: flex;
   flex-direction: column;
 }
 
-.showtimes .text {
+.showtime-selection .text {
   font-family: "Roboto", sans-serif;
   font-style: normal;
   font-weight: normal;

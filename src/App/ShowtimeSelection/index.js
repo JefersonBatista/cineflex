@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 import Button from "../../components/Button";
 
@@ -10,6 +10,8 @@ export default function ShowtimeSelection({
   setPage,
   setMovieTitle,
   setPosterURL,
+  setWeekday,
+  setTime,
 }) {
   const [showtimes, setShowtimes] = useState(null);
 
@@ -24,17 +26,19 @@ export default function ShowtimeSelection({
         setShowtimes(response.data);
         setMovieTitle(response.data.title);
         setPosterURL(response.data.posterURL);
+        setWeekday(null);
+        setTime(null);
       });
-  }, [idFilme, setMovieTitle, setPosterURL]);
 
-  setPage("ShowtimeSelection");
+    setPage("ShowtimeSelection");
+  }, [idFilme]);
 
   if (showtimes === null) {
     return <h1>Carregando...</h1>;
   }
 
   return (
-    <section className="showtimes">
+    <section className="showtime-selection">
       {showtimes.days.map((day) => (
         <section key={day.id} className="day">
           <span className="text" key={day.id}>
@@ -42,12 +46,9 @@ export default function ShowtimeSelection({
           </span>
           <div className="times">
             {day.showtimes.map((showtime) => (
-              <Button
-                key={showtime.id}
-                size="small"
-                text={showtime.name}
-                action={() => setPage("SeatSelection")}
-              />
+              <Link key={showtime.id} to={`/assentos/${showtime.id}`}>
+                <Button size="small" text={showtime.name} />
+              </Link>
             ))}
           </div>
         </section>
