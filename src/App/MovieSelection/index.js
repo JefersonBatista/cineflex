@@ -14,6 +14,10 @@ export default function MovieSelection({ setPage }) {
       .get("https://mock-api.driven.com.br/api/v4/cineflex/movies")
       .then((response) => {
         setMovies(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+        alert("Algo deu errado com a listagem dos filmes :(");
       });
 
     setPage("MovieSelection");

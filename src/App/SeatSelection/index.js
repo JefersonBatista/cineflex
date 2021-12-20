@@ -13,6 +13,7 @@ export default function SeatSelection({
   setPosterURL,
   setWeekday,
   setTime,
+  setRequestInfo,
 }) {
   const navigate = useNavigate();
 
@@ -39,6 +40,10 @@ export default function SeatSelection({
         setPosterURL(response.data.movie.posterURL);
         setWeekday(response.data.day.weekday);
         setTime(response.data.name);
+      })
+      .catch((error) => {
+        console.log(error);
+        alert("Algo deu errado com a exibição dos assentos :(");
       });
 
     setPage("SeatSelection");
@@ -91,7 +96,25 @@ export default function SeatSelection({
                 "https://mock-api.driven.com.br/api/v4/cineflex/seats/book-many",
                 { ids: selectedSeats, name: purchaserName, cpf: purchaserCPF }
               )
-              .then((response) => {
+              .then(() => {
+                setRequestInfo({
+                  movie: seats.movie.title,
+                  date: seats.day.date,
+                  time: seats.name,
+
+                  tickets: selectedSeats.map((seatId) => {
+                    const seatInfo = seats.seats.find(
+                      (seat) => seat.id === seatId
+                    );
+                    return seatInfo.name;
+                  }),
+
+                  purchaser: {
+                    name: purchaserName,
+                    CPF: purchaserCPF,
+                  },
+                });
+
                 navigate("/sucesso");
               })
               .catch((error) => {

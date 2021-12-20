@@ -28,6 +28,10 @@ export default function ShowtimeSelection({
         setPosterURL(response.data.posterURL);
         setWeekday(null);
         setTime(null);
+      })
+      .catch((error) => {
+        console.log(error);
+        alert("Algo deu errado com a listagem das sessões :(");
       });
 
     setPage("ShowtimeSelection");

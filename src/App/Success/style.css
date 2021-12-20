@@ -1,0 +1,51 @@
+.success {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  font-family: "Roboto", sans-serif;
+  font-style: normal;
+
+  width: 100%;
+}
+
+.success .successful-request {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  height: 110px;
+
+  font-weight: bold;
+  font-size: 24px;
+  text-align: center;
+  color: #247a6b;
+}
+
+.success .reservationInfo {
+  width: 100%;
+  padding: 0 24px;
+}
+
+.success .section {
+  display: flex;
+  flex-direction: column;
+
+  margin-bottom: 30px;
+
+  color: #293845;
+}
+
+.success .section .title {
+  font-weight: bold;
+  font-size: 24px;
+}
+
+.success .section .info {
+  font-weight: normal;
+  font-size: 22px;
+}
+
+.success .button {
+  margin: 0 auto;
+}

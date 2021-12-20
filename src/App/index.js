@@ -15,6 +15,7 @@ export default function App() {
   const [posterURL, setPosterURL] = useState(null);
   const [weekday, setWeekday] = useState(null);
   const [time, setTime] = useState(null);
+  const [requestInfo, setRequestInfo] = useState(null);
 
   function pageTitle() {
     switch (page) {
@@ -31,10 +32,12 @@ export default function App() {
 
   return (
     <div className="app">
-      <header className="header">Cineflex</header>
+      <header className="header">
+        <h1 className="title">Cineflex</h1>
+      </header>
 
       <div className="container">
-        {pageTitle() && <h1 className="page-title">{pageTitle()}</h1>}
+        {pageTitle() && <h2 className="page-title">{pageTitle()}</h2>}
 
         <BrowserRouter>
           <Routes>
@@ -66,13 +69,14 @@ export default function App() {
                   setWeekday={setWeekday}
                   setTime={setTime}
                   setPage={setPage}
+                  setRequestInfo={setRequestInfo}
                 />
               }
             />
             <Route
               key={4}
               path="/sucesso"
-              element={<Success setPage={setPage} />}
+              element={<Success setPage={setPage} info={requestInfo} />}
             />
           </Routes>
         </BrowserRouter>
