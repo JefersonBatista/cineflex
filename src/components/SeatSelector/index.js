@@ -4,7 +4,7 @@ import Seat from "./Seat";
 
 import "./style.css";
 
-export default function SeatSelector({ seats }) {
+export default function SeatSelector({ seats, setSelectedSeats }) {
   const seatsPerRow = 10;
   const rows = Math.ceil(seats.length / seatsPerRow);
 
@@ -23,22 +23,22 @@ export default function SeatSelector({ seats }) {
     seatRows.push(seatRow);
   }
 
-  const [selectedSeats, setSelectedSeats] = useState([]);
+  const [selected, setSelected] = useState([]);
 
-  function chooseSeat(number, status) {
+  function chooseSeat(id, status) {
     if (status === "unavailable") {
       alert("Esse assento não está disponível");
       return;
     }
 
     if (status === "available") {
-      setSelectedSeats([...selectedSeats, number]);
+      setSelected([...selected, id]);
+      setSelectedSeats([...selected, id]);
     } else if (status === "selected") {
-      setSelectedSeats(selectedSeats.filter((selected) => selected !== number));
+      setSelected(selected.filter((selected) => selected !== id));
+      setSelectedSeats(selected.filter((selected) => selected !== id));
     }
   }
-
-  console.log(selectedSeats);
 
   return (
     <div className="seat-selector">
@@ -77,16 +77,17 @@ function SeatRow({ numbers, seats, chooseSeat }) {
   return (
     <div className="row">
       {numbers.map((number) => {
-        const status = seats.find((seat) => seat.name === number).isAvailable
-          ? "available"
-          : "unavailable";
+        const currentSeat = seats.find((seat) => seat.name === number);
+
+        const id = currentSeat.id;
+        const status = currentSeat.isAvailable ? "available" : "unavailable";
 
         return (
           <Seat
-            key={number}
+            key={id}
             number={number}
             initialStatus={status}
-            chooseSeat={(seatStatus) => chooseSeat(number, seatStatus)}
+            chooseSeat={(seatStatus) => chooseSeat(id, seatStatus)}
           />
         );
       })}

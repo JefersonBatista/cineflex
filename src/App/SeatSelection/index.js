@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 import Button from "../../components/Button";
 import SeatSelector from "../../components/SeatSelector";
@@ -14,7 +14,15 @@ export default function SeatSelection({
   setWeekday,
   setTime,
 }) {
+  const navigate = useNavigate();
+
+  const cpfTemplate1 =
+    /^[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]$/;
+  const cpfTemplate2 =
+    /^[0-9][0-9][0-9]\.[0-9][0-9][0-9]\.[0-9][0-9][0-9]-[0-9][0-9]$/;
+
   const [seats, setSeats] = useState(null);
+  const [selectedSeats, setSelectedSeats] = useState([]);
   const [purchaserName, setPurchaserName] = useState("");
   const [purchaserCPF, setPurchaserCPF] = useState("");
 
@@ -42,7 +50,7 @@ export default function SeatSelection({
 
   return (
     <section className="seat-selection">
-      <SeatSelector seats={seats.seats} />
+      <SeatSelector seats={seats.seats} setSelectedSeats={setSelectedSeats} />
       <div className="purchaser">
         <div className="name">
           <p className="label">Nome do comprador:</p>
@@ -70,7 +78,31 @@ export default function SeatSelection({
         </div>
       </div>
 
-      <Button size="large" text="Reservar assento(s)" />
+      <Button
+        size="large"
+        text="Reservar assento(s)"
+        onClick={() => {
+          const validCPF =
+            cpfTemplate1.test(purchaserCPF) || cpfTemplate2.test(purchaserCPF);
+
+          if (validCPF) {
+            axios
+              .post(
+                "https://mock-api.driven.com.br/api/v4/cineflex/seats/book-many",
+                { ids: selectedSeats, name: purchaserName, cpf: purchaserCPF }
+              )
+              .then((response) => {
+                navigate("/sucesso");
+              })
+              .catch((error) => {
+                console.log(error);
+                alert("Algo deu errado com o pedido do(s) ingresso(s) :(");
+              });
+          } else {
+            alert("Insira um CPF válido.");
+          }
+        }}
+      />
     </section>
   );
 }

@@ -5,6 +5,7 @@ import Footer from "../components/Footer";
 import MovieSelection from "./MovieSelection";
 import ShowtimeSelection from "./ShowtimeSelection";
 import SeatSelection from "./SeatSelection";
+import Success from "./Success";
 
 import "./style.css";
 
@@ -67,6 +68,11 @@ export default function App() {
                   setPage={setPage}
                 />
               }
+            />
+            <Route
+              key={4}
+              path="/sucesso"
+              element={<Success setPage={setPage} />}
             />
           </Routes>
         </BrowserRouter>
