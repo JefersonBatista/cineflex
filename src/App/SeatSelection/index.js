@@ -43,27 +43,31 @@ export default function SeatSelection({
   return (
     <section className="seat-selection">
       <SeatSelector seats={seats.seats} />
-      <div className="purchaser-name">
-        <p className="label">Nome do comprador:</p>
-        <input
-          type="text"
-          className="entry"
-          onChange={(event) => {
-            setPurchaserName(event.target.value);
-          }}
-          value={purchaserName}
-        />
-      </div>
-      <div className="purchaser-cpf">
-        <p className="label">CPF do comprador:</p>
-        <input
-          type="text"
-          className="entry"
-          onChange={(event) => {
-            setPurchaserCPF(event.target.value);
-          }}
-          value={purchaserCPF}
-        />
+      <div className="purchaser">
+        <div className="name">
+          <p className="label">Nome do comprador:</p>
+          <input
+            type="text"
+            className="entry"
+            placeholder="Digite seu nome..."
+            onChange={(event) => {
+              setPurchaserName(event.target.value);
+            }}
+            value={purchaserName}
+          />
+        </div>
+        <div className="cpf">
+          <p className="label">CPF do comprador:</p>
+          <input
+            type="text"
+            className="entry"
+            placeholder="Digite seu CPF..."
+            onChange={(event) => {
+              setPurchaserCPF(event.target.value);
+            }}
+            value={purchaserCPF}
+          />
+        </div>
       </div>
 
       <Button size="large" text="Reservar assento(s)" />

@@ -2,6 +2,12 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+.seat-selector .seats {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   gap: 18px;
 
   padding: 16px 24px;
@@ -10,4 +16,23 @@
 .seat-selector .row {
   display: flex;
   gap: 7px;
+}
+
+.seat-selector .subtitles {
+  display: flex;
+  justify-content: space-evenly;
+
+  width: 100%;
+
+  font-family: "Roboto", sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 13px;
+  color: #4e5a65;
+}
+
+.seat-selector .subtitle {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }

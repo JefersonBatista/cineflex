@@ -42,29 +42,31 @@ export default function SeatSelector({ seats }) {
 
   return (
     <div className="seat-selector">
-      {seatRows.map((row, index) => (
-        <SeatRow
-          key={index}
-          numbers={row}
-          seats={seats}
-          chooseSeat={chooseSeat}
-        />
-      ))}
+      <div className="seats">
+        {seatRows.map((row, index) => (
+          <SeatRow
+            key={index}
+            numbers={row}
+            seats={seats}
+            chooseSeat={chooseSeat}
+          />
+        ))}
+      </div>
 
-      <div className="subtitle">
-        <div className="selected-subtitle">
+      <div className="subtitles">
+        <div className="selected subtitle">
           <div className="seat selected" />
-          <span className="selected-text">Selecionado</span>
+          <span className="text">Selecionado</span>
         </div>
 
-        <div className="available-subtitle">
+        <div className="available subtitle">
           <div className="seat available" />
-          <span className="available-text">Disponível</span>
+          <span className="text">Disponível</span>
         </div>
 
-        <div className="unavailable-subtitle">
+        <div className="unavailable subtitle">
           <div className="seat unavailable" />
-          <span className="unavailable-text">Indisponível</span>
+          <span className="text">Indisponível</span>
         </div>
       </div>
     </div>

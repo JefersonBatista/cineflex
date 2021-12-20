@@ -3,3 +3,36 @@
   flex-direction: column;
   align-items: center;
 }
+
+.seat-selection .purchaser {
+  width: 100%;
+  padding: 24px;
+
+  font-family: "Roboto", sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+}
+
+.seat-selection .purchaser .name {
+  margin-bottom: 15px;
+}
+
+.seat-selection .label {
+  color: #293845;
+}
+
+.seat-selection .entry {
+  width: 100%;
+  height: 51px;
+  border-radius: 3px;
+
+  font-size: 18px;
+  border: 1px solid #d4d4d4;
+  color: #293845;
+}
+
+.seat-selection .entry::placeholder {
+  font-style: italic;
+  color: #afafaf;
+}
