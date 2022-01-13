@@ -1,7 +1,7 @@
-import axios from "axios";
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 
+import { getShowtimes } from "../../services/cineflex";
 import Button from "../../components/Button";
 
 import "./style.css";
@@ -18,10 +18,7 @@ export default function ShowtimeSelection({
   const { idFilme } = useParams();
 
   useEffect(() => {
-    axios
-      .get(
-        `https://mock-api.driven.com.br/api/v4/cineflex/movies/${idFilme}/showtimes`
-      )
+    getShowtimes(idFilme)
       .then((response) => {
         setShowtimes(response.data);
         setMovieTitle(response.data.title);

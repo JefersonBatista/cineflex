@@ -1,7 +1,7 @@
-import axios from "axios";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
+import { getMovies } from "../../services/cineflex";
 import Poster from "../../components/Poster";
 
 import "./style.css";
@@ -10,8 +10,7 @@ export default function MovieSelection({ setPage }) {
   const [movies, setMovies] = useState(null);
 
   useEffect(() => {
-    axios
-      .get("https://mock-api.driven.com.br/api/v4/cineflex/movies")
+    getMovies()
       .then((response) => {
         setMovies(response.data);
       })

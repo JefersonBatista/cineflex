@@ -1,7 +1,7 @@
-import axios from "axios";
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
+import { getShowtime, makeTicketsRequest } from "../../services/cineflex";
 import Button from "../../components/Button";
 import SeatSelector from "../../components/SeatSelector";
 
@@ -22,7 +22,7 @@ export default function SeatSelection({
   const cpfTemplate2 =
     /^[0-9][0-9][0-9]\.[0-9][0-9][0-9]\.[0-9][0-9][0-9]-[0-9][0-9]$/;
 
-  const [seats, setSeats] = useState(null);
+  const [showtime, setShowtime] = useState(null);
   const [selectedSeats, setSelectedSeats] = useState([]);
   const [purchaserName, setPurchaserName] = useState("");
   const [purchaserCPF, setPurchaserCPF] = useState("");
@@ -30,12 +30,9 @@ export default function SeatSelection({
   const { idSessao } = useParams();
 
   useEffect(() => {
-    axios
-      .get(
-        `https://mock-api.driven.com.br/api/v4/cineflex/showtimes/${idSessao}/seats`
-      )
+    getShowtime(idSessao)
       .then((response) => {
-        setSeats(response.data);
+        setShowtime(response.data);
         setMovieTitle(response.data.movie.title);
         setPosterURL(response.data.movie.posterURL);
         setWeekday(response.data.day.weekday);
@@ -49,13 +46,16 @@ export default function SeatSelection({
     setPage("SeatSelection");
   }, [idSessao]);
 
-  if (seats === null) {
+  if (showtime === null) {
     return <h1>Carregando...</h1>;
   }
 
   return (
     <section className="seat-selection">
-      <SeatSelector seats={seats.seats} setSelectedSeats={setSelectedSeats} />
+      <SeatSelector
+        seats={showtime.seats}
+        setSelectedSeats={setSelectedSeats}
+      />
       <div className="purchaser">
         <div className="name">
           <p className="label">Nome do comprador:</p>
@@ -91,19 +91,19 @@ export default function SeatSelection({
             cpfTemplate1.test(purchaserCPF) || cpfTemplate2.test(purchaserCPF);
 
           if (validCPF) {
-            axios
-              .post(
-                "https://mock-api.driven.com.br/api/v4/cineflex/seats/book-many",
-                { ids: selectedSeats, name: purchaserName, cpf: purchaserCPF }
-              )
+            makeTicketsRequest({
+              ids: selectedSeats,
+              name: purchaserName,
+              cpf: purchaserCPF,
+            })
               .then(() => {
                 setRequestInfo({
-                  movie: seats.movie.title,
-                  date: seats.day.date,
-                  time: seats.name,
+                  movie: showtime.movie.title,
+                  date: showtime.day.date,
+                  time: showtime.name,
 
                   tickets: selectedSeats.map((seatId) => {
-                    const seatInfo = seats.seats.find(
+                    const seatInfo = showtime.seats.find(
                       (seat) => seat.id === seatId
                     );
                     return seatInfo.name;
